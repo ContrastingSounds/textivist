@@ -1,0 +1,15 @@
+{% extends 'mobiles/base.html' %}
+
+{% block subheader %}
+    <h1>{{ organisation.name }}</h1>
+    <p>Created: {{ account.created_date }}</p>
+    <p>Owner: {{ account.owner }}</p>
+{% endblock %}
+
+{% block content %}
+    <h2>Topics</h2>
+    {% for topic in topics %}
+        <h3>{{ topic }}</h3>
+        <p>Managed by {{ topic.owner.phone_number}}</p>
+    {% endfor %}
+{% endblock %}

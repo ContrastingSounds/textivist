@@ -1,0 +1,13 @@
+{% extends 'mobiles/base.html' %}
+
+{% block subheader %}
+    <h1>Create batch job</h1>
+{% endblock %}
+
+{% block content %}
+    <p>Content</p>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_ul }}
+        <button type="submit" class="save btn btn-default">Schedule Message</button>
+    </form>
+{% endblock %}

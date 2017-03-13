@@ -1,0 +1,26 @@
+{% extends 'mobiles/base.html' %}
+
+{% block subheader %}
+            <h1>{{ mobile.phone_number }}</h1>
+            <p>Created: {{ mobile.created_date }}</p>
+            <p>Owner: {{ mobile.first_name }} {{ mobile.last_name }}</p>
+{% endblock %}
+
+{% block content %}
+    <div class="content container">
+        <h2>Memberships</h2>
+        {% for membership in memberships %}
+            <p>{{ membership.tt_account }} -
+                {% for organisation in membership.organisations.all %}
+                    {{ organisation.name }},
+                {% endfor %}</p>
+        {% endfor %}
+    </div>
+
+    <div class="content container">
+        <h2>Subscriptions</h2>
+        {% for subscription in subscriptions %}
+            <p>{{ subscription.topic }} (managed by {{ subscription.topic.organisation }})</p>
+        {% endfor %}
+    </div>
+{% endblock %}

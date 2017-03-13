@@ -1,0 +1,33 @@
+{% extends 'mobiles/base.html' %}
+
+{% block subheader %}
+            <h1>Textivist Help</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="content container">
+        <h3>Important note on unscribing and block lists</h3>
+        <p>It is critical that individuals can block their mobiles from receiving unwanted text messages.</p>
+        <p>This is enforced by our SMS provider (Twilio). If you send a text to STOP, UNSUBSCRIBE, CANCEL, END or QUIT,
+        then no further messages will be sent to your phone. Textivist will receive notice of this, but has no ability
+        to override it.</p>
+        <p>There is also a STOPALL command - it might be nice to apply this to all a given users subscriptions. Currently,
+            Twilio only applies the block per endpoint.</p>
+        <p>You can send a START, YES or UNSTOP text to start receiving messages again.</p>
+        <h2>SMS Commands</h2>
+        <ul>
+            <li>REGISTER: Will create new Textivist account if not present, and add membership to endpoint's org.</li>
+            <li>SET <i>Your Name</i>: Registers your name to the mobile</li>
+            <li>SET OWNER <i>Your Name</i>: Registers your name to the mobile</li>
+            <li>SET POSTCODE <i>Your Postcode</i>: Registers your postcode to the mobile (not yet implemented)</li>
+            <li>ADD <i>TOPIC</i>: Will subscribe to given topic shortcode</li>
+            <li>MUTE <i>TOPIC</i>: Will stop subscription to given topic shortcode</li>
+            <li>CAST <i>TOPIC Message Text</i>: Will broadcast Message Text to all topic subscribers</li>
+        </ul>
+    </div>
+
+    <div class="content container">
+        <h2>Website Instructions</h2>
+        <p>None yet! Try scheduling a batch job from the Actions menu option</p>
+    </div>
+{% endblock %}

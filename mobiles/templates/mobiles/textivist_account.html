@@ -1,0 +1,15 @@
+{% extends 'mobiles/base.html' %}
+
+{% block subheader %}
+    <h1>{{ account.name }}</h1>
+    <p>Created: {{ account.created_date }}</p>
+    <p>Owner: {{ account.owner }}</p>
+{% endblock %}
+
+{% block content %}
+    {% for organisation in organisations %}
+        <h3><a href="{% url 'organisation' textivist_id=organisation.tt_account.pk organisation_id=organisation.pk %}">{{ organisation }}</a></h3>
+        <p>Managed by {{ organisation.owner.phone_number}}</p>
+        <p>Part of {{ organisation.parent }}</p>
+    {% endfor %}
+{% endblock %}
