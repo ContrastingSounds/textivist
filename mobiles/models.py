@@ -439,7 +439,7 @@ class MsgBatch(models.Model):
     tt_account = models.ForeignKey('TextivistAccount', on_delete=models.CASCADE)
     endpoint = models.ForeignKey('MessagingEndPoint', on_delete=models.CASCADE)
     created_on = models.DateTimeField('Date batch job was created')
-    to_send = models.DateTimeField('Time batch job to be run')
+    to_send = models.DateTimeField('Time to send (e.g. 2017-03-14 15:00)')
     was_sent = models.DateTimeField('Time batch job was completed', blank=True, null=True)
     type = models.CharField(max_length=10, choices=MSG_TYPES, default='SMS')
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
