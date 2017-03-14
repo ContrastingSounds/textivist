@@ -62,6 +62,13 @@ def organisation(request, textivist_id, organisation_id):
     return render(request, 'mobiles/organisation.html', context=context)
 
 
+def mobiles_list(request):
+    mobiles = Mobile.objects.all()
+    context = {
+        'mobiles': mobiles,
+    }
+    return render(request, 'mobiles/mobiles_list.html', context=context)
+
 def mobile(request, mobile_id):
     mobile = Mobile.objects.get(pk=mobile_id)
     memberships = Membership.objects.filter(mobile=mobile)

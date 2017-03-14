@@ -1,0 +1,13 @@
+{% extends 'mobiles/base.html' %}
+
+{% block subheader %}
+    <h1>All registered mobiles</h1>
+{% endblock %}
+
+{% block content %}
+    <ol>
+    {% for mobile in mobiles %}
+        <li>{{ mobile.get_full_name }} Registered: {{ mobile.created_date }} Last Contacted:{{ mobile.last_texted }}</li>
+    {% endfor %}
+    </ol>
+{% endblock %}

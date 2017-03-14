@@ -36,8 +36,10 @@ urlpatterns = [
     url(r'^textivist/(?P<textivist_id>[0-9]+)/organisation/(?P<organisation_id>[0-9]+)/$', views.organisation, name='organisation'),
     # ex: /batch/add
     url(r'^batch/add/$', views.create_batch, name='create_batch'),
-    # ex: /mobile/5/
-    url(r'^mobile/(?P<mobile_id>.+)/$', views.mobile, name='mobile'),
+    # ex: /mobiles/
+    url(r'^mobiles/$', views.mobiles_list, name='mobiles_list'),
+    # ex: /mobiles/5/
+    url(r'^mobiles/(?P<mobile_id>.+)/$', views.mobile, name='mobile'),
     # ex: /help
     url(r'^help/$', views.help, name='help'),
 ]
