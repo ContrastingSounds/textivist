@@ -16,14 +16,21 @@ def send_pending_messages():
         )
 
         try:
+            mobile = Mobile.objects.get(phone_number=outgoing_message.to_mobile)
             client.messages.create(
                 body=outgoing_message.body,
                 to=outgoing_message.to_mobile,
                 from_=outgoing_message.endpoint.endpoint_address,
             )
-            outgoing_message.sent = timezone.now()
             outgoing_message.state = 'SENT'
+            outgoing_message.sent = timezone.now()
+            mobile.last_texted = outgoing_message.sent
             outgoing_message.save()
+            mobile.save()
+
+        except Mobile.DoesNotExist:
+            pass
+            
         except TwilioException as e:
             print(e)
 
