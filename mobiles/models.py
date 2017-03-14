@@ -234,18 +234,6 @@ class Mobile(AbstractBaseUser, PermissionsMixin):
     was_created_recently.boolean = True
     was_created_recently.short_description = 'Registered recently?'
 
-    def text_mobile(self):
-        """Send test message to mobile, not implemented"""
-        pass
-
-    # def save(self, *args, **kwargs):
-    #     """Custom save method which also sends a confirmation text"""
-    #
-    #     super(Mobile, self).save(*args, **kwargs)
-    #
-    #     from .tasks import send_registration_confirmation
-    #     send_registration_confirmation.delay(self.pk)
-
 
 class Membership(models.Model):
     STATES = (
