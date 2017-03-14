@@ -13,12 +13,12 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 
 # Celery Settings
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = 'redis://redis-dev.4nnstd.0001.euw2.cache.amazonaws.com:6379/0'
 
 # Twilio Settings
-ACCOUNT_SID = 'ACd3fe1f3aeb507527541257b1f72fb948'
-AUTH_TOKEN = '59b0a3e2a23f9bb6d5f6cb0c10e01246'
-TWILIO_NUMBER = '+441268833167'
+# ACCOUNT_SID = 'ACd3fe1f3aeb507527541257b1f72fb948'
+# AUTH_TOKEN = '59b0a3e2a23f9bb6d5f6cb0c10e01246'
+# TWILIO_NUMBER = '+441268833167'
 
 # REST Framework Settings
 REST_FRAMEWORK = {
@@ -108,7 +108,7 @@ DATABASES = {
         'NAME': 'textivist',
         'USER': 'ttadmin',
         'PASSWORD': 'ttsms123',
-        'HOST': 'localhost',
+        'HOST': 'testdb.cetagxa0mogt.eu-west-2.rds.amazonaws.com',
         'PORT': '',  # Set to empty string for default.
     }
 }
