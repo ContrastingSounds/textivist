@@ -30,7 +30,7 @@ def send_pending_messages():
 
         except Mobile.DoesNotExist:
             pass
-            
+
         except TwilioException as e:
             print(e)
 
