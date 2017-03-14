@@ -272,13 +272,6 @@ def sms_set(endpoint, phone, commands, parameters):
     mobile = validate_phone(endpoint, phone)
 
     if mobile:
-        if endpoint.organisation.owner != mobile:
-            send_sms(
-                endpoint,
-                phone,
-                'Permission denied.'
-            )
-            return
         def set_owner(parameters):
             try:
                 mobile.first_name = parameters[0]
