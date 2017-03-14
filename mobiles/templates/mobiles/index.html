@@ -53,7 +53,25 @@
                 <li>Verify that your permissions prevent you from sending bulk messages from your mobile:
                     <ul>
                         <li>Text "CAST ELEX This message will be rejected" to 01268 833501</li>
+                        <li><i>You should receive a "Permission denied." message.</i></li>
                     </ul>
+                </li>
+                <li>Mute a topic: text "MUTE ELEX" to 01268 833501
+                    <ul><li>Just re-send "ADD ELEX" to re-subscribe</li></ul>
+                </li>
+                <li>Block all messages from 01268 833501: Text "STOP" to 01268 833501
+                    <ul><i>
+                        <li>These commands also work: STOPALL, UNSUBSCRIBE, CANCEL, END, QUIT.</li>
+                        <li>Note: need a policy and logic to block *all* phone numbers associated with an account.</li>
+                        <li>Potentially, upon receiving a STOP (or just STOPALL?), could check if mobile is registered
+                            to other accounts and send a text asking if they'd like them all blocked.</li>
+                    </i></ul>
+                </li>
+                <li>Remove block: Text "START" to 01268 833 501.
+                    <ul><i>
+                        <li>These commands also work: START, YES, UNSTOP.</li>
+                        <li>They will also be treated as registration requests.</li>
+                    </i></ul>
                 </li>
             </ol>
     </div>
