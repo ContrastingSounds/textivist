@@ -333,6 +333,13 @@ def sms_cast(endpoint, phone, commands, parameters):
 
         try:
             topic = Topic.objects.get(shortcode=topic, tt_account=endpoint.tt_account)
+            if topic.owner != mobile:
+                send_sms(
+                    endpoint,
+                    phone,
+                    'Permission denied.'
+                )
+                return
         except Topic.DoesNotExist:
             send_sms(
                 endpoint,
