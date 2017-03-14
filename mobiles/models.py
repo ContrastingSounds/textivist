@@ -209,19 +209,19 @@ class Mobile(AbstractBaseUser, PermissionsMixin):
 
     def get_full_name(self):
         users_name = ' '.join([self.first_name, self.last_name])
-        return '{}: *{}'.format(
+        return '{}: **{}'.format(
             users_name,
             self.phone_number[-4:]
         )
 
     def get_short_name(self):
-        return 'Mobile *{}'.format(
+        return 'Mobile **{}'.format(
             self.phone_number[-4:]
         )
 
     def __str__(self):
         users_name = ' '.join([self.first_name, self.last_name])
-        return '{}: *{}'.format(
+        return '{}: **{}'.format(
             users_name,
             self.phone_number[-4:]
         )
