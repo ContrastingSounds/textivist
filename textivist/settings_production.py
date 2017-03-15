@@ -1,7 +1,7 @@
 import os
 
 try:
-    from settings import *
+    from .settings import *
 except ImportError:
     pass
 
