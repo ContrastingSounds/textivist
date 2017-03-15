@@ -13,12 +13,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 
 # Celery Settings
-CELERY_BROKER_URL = 'redis://redis-dev.4nnstd.0001.euw2.cache.amazonaws.com:6379/0'
-
-# Twilio Settings
-# ACCOUNT_SID = 'ACd3fe1f3aeb507527541257b1f72fb948'
-# AUTH_TOKEN = '59b0a3e2a23f9bb6d5f6cb0c10e01246'
-# TWILIO_NUMBER = '+441268833167'
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
 
 # REST Framework Settings
 REST_FRAMEWORK = {
@@ -41,7 +36,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'omjw0t$s7@i+$3az!iit0om-tu)sf-&h$#vh4$qx_)tcbsa@rp'
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -106,9 +101,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'textivist',
-        'USER': 'ttadmin',
-        'PASSWORD': 'ttsms123',
-        'HOST': 'testdb.cetagxa0mogt.eu-west-2.rds.amazonaws.com',
+        'USER': os.environ['POSTGRES_DB_USER'],
+        'PASSWORD': os.environ['POSTGRES_DB_PASS'],
+        'HOST': 'localhost',
         'PORT': '',  # Set to empty string for default.
     }
 }
