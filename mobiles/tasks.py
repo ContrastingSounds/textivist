@@ -1,3 +1,5 @@
+from random import randint
+
 from celery import shared_task
 from django.utils import timezone
 from twilio.exceptions import TwilioException
@@ -84,11 +86,21 @@ def sms_register(endpoint, phone, commands=None, parameters=None):
     try:
         mobile = Mobile.objects.get(phone_number=phone)
     except Mobile.DoesNotExist:
+        password = str(randint(10000, 99999))
         mobile = Mobile.objects.create(
             phone_number=phone,
             created_date=timezone.now(),
             last_texted=timezone.now(),
-            state='REQUESTED'
+            state='ACTIVE'
+        )
+        mobile.set_password(password)
+        send_sms(
+            endpoint.endpoint_address,
+            mobile.phone_number,
+            'Textivist account created for {}.\nYour password is {}'.format(
+                mobile.phone_number,
+                password
+            )
         )
 
     try:
@@ -103,8 +115,7 @@ def sms_register(endpoint, phone, commands=None, parameters=None):
 
     membership.organisations.add(organisation)
 
-    body = 'Textivist account verified for {}\n\n' \
-            'Membership to {} added.'.format(
+    body = 'Membership to {} added.'.format(
                 mobile.phone_number,
                 organisation.name
             )
