@@ -18,30 +18,28 @@
     </div>
     <hr>
     <div class="container">
-        <h3>Get a feel for the application</h3>
-            <h5>An Account</h5>
+        <h3>Application Structure</h3>
+            <h5>Accounts</h5>
             <p>The top level structure within Textivist. It is broadly assumed that an account represents a single
             overall organisation, which users would expect to hold accountable. For instance, while most political
             campaigning happens at a street level, people expect to be able to raise issues such as unwanted messages
             and have it dealt with throughout the UK.</p>
-            <h5>An Organisation</h5>
+            <h5>Organisations</h5>
             <p>Most application users will be focused on a particular organisation (large campaigning enterprises,
             such as political parties, have many teams. A user may have broad or narrow interests). This also enables
             Textivist to provide separate invoices per organisation. It can even (once implemented!) provide a breakdown
             of costs by topic.</p>
-            <h5>A Mobile</h5>
+            <h5>Mobiles</h5>
             <p>Users register their mobile with Textivist, and then join multiple accounts and organisations.
             They can self-manage which topics they receive messages about.</p>
-            <h5>Redacted List of Mobiles</h5>
-            <p>Note that you can only check the last few numbers of a mobile, and the owner's name (if provided).
-                You can also verify when it was registered, and the last time Textivist sent it an SMS.</p>
+            <h5>Topics and Subscriptions</h5>
+            <p>Every account and organisation might have one or more topics, which mobiles can be subscribed to.</p>
         <h3>Try it out!</h3>
             <ol>
                 <li>Register your mobile: text "REGISTER" to 01268 833501</li>
                 <li>Set your name: text "SET OWNER Firstname Lastname" to 01268 833501</li>
                 <li>Schedule a bulk message: <a href="/batch/add/">Click here and enter:</a>
                     <ul>
-                        <li>Tt_account = "Liberal Democrats"</li>
                         <li>Topic = "Elections In My Area"</li>
                         <li>Pick a time to send, in the format: "2017-03-14 15:00" <i>(we suggest 3-5 minutes in the future)</i></li>
                         <li>Leave Type and Priority as the defaults of "SMS" and "Normal Messages"</li>
