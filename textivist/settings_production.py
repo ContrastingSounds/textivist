@@ -5,6 +5,8 @@ try:
 except ImportError:
     pass
 
+DEBUG = False
+
 # Celery Settings
 CELERY_BROKER_URL = 'redis://redis-dev.4nnstd.0001.euw2.cache.amazonaws.com:6379/0'
 

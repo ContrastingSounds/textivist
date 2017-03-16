@@ -15,25 +15,24 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-# from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
-User = get_user_model()
+from django.contrib.auth import get_user_model, views
 
 from rest_framework import routers, serializers, viewsets
 from rest_framework.schemas import get_schema_view
 from rest_framework_swagger.renderers import OpenAPIRenderer, SwaggerUIRenderer
 
+Mobile = get_user_model()
 
 # Serializers define the API representation.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = User
+        model = Mobile
         fields = ('phone_number', 'state')
 
 
 # ViewSets define the view behavior.
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = Mobile.objects.all()
     serializer_class = UserSerializer
 
 
@@ -52,4 +51,6 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^schema/$', schema_view),
+    url(r'^accounts/login/$', views.login, name='login'),
+    url(r'^accounts/logout/$', views.logout, name='logout', kwargs={'next_page': '/'}),
 ]

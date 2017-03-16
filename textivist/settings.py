@@ -47,7 +47,6 @@ ALLOWED_HOSTS = [
     'ec2-52-56-202-26.eu-west-2.compute.amazonaws.com'
 ]
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -125,6 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_REDIRECT_URL = 'my_account'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
