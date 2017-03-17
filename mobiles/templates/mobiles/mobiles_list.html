@@ -6,13 +6,17 @@
 
 {% block content %}
     {% if user.is_staff %}
-        {% for account in accounts %}
-            <h3>{{ account.name }} (Owner: {{ account.owner }})</h3>
-            <ol>{% for membership in account.membership_set.all %}
-                <li>{{ membership.mobile.get_full_name }} Registered: {{ membership.mobile.created_date }}
-                    Last Contacted: {{ membership.mobile.last_texted|default_if_none:"Never texted" }}</li>
-            {% endfor %}</ol>
-        {% endfor %}
+        {% if accounts.count > 0 %}
+            {% for account in accounts %}
+                <h3>{{ account.name }} (Owner: {{ account.owner }})</h3>
+                <ol>{% for membership in account.membership_set.all %}
+                    <li>{{ membership.mobile.get_full_name }} Registered: {{ membership.mobile.created_date }}
+                        Last Contacted: {{ membership.mobile.last_texted|default_if_none:"Never texted" }}</li>
+                {% endfor %}</ol>
+            {% endfor %}
+        {% else %}
+            <p>You are not the registered owner for any Textivist accounts.</p>
+        {% endif %}
     {% else %}
         <p>You do not have permission to see the list of registered mobiles.</p>
     {% endif %}
