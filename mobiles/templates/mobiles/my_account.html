@@ -24,7 +24,7 @@
         <h2>Topic Subscriptions</h2>
         {% for subscription in subscriptions %}
             {% if subscription.topic.owner == user %}
-                <p><a href="{% url 'topic' topic_id=subscription.topic.pk %}">{{ subscription.topic }}</a> (managed by {{ subscription.topic.organisation }},
+                <p><a href="{% url 'topic' topic_id=subscription.topic.pk %}">{{ subscription.topic.shortcode }}</a> - {{ subscription.topic }} (managed by {{ subscription.topic.organisation }},
                 for {{ subscription.tt_account }}, <i>you own this topic</i>)</p>
             {% else %}
                 <p>{{ subscription.topic }} (managed by {{ subscription.topic.organisation }},
