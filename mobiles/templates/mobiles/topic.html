@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-    <h3>Messages batches</h3>
+    <h3>Messages scheduled</h3>
     <ol>
     {% for batch in topic.msgbatch_set.all %}
         <li>{{ batch.to_send }}: {{ batch.body }}</li>
@@ -15,7 +15,7 @@
     <h3>Mobiles Subscribed</h3>
     <ol>
     {% for subscription in topic.subscription_set.all %}
-        <li>{{ subscription.phone_number.phone_number}} Subscribed: {{ subscription.subscribed_date}}
+        <li>{{ subscription.phone_number}} Subscribed: {{ subscription.subscribed_date}}
             Last Contacted: {{ mobile.last_texted|default_if_none:"Never texted" }}</li>
     {% endfor %}
     </ol>

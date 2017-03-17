@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 from .forms import MessageBatchForm, TopicForm
-from .models import TextivistAccount, Organisation, Topic, Mobile, Membership, Subscription
+from .models import TextivistAccount, Organisation, Topic, Mobile, Membership, Subscription, Outbox
 
 
 def textivist_account_list(request):
@@ -64,9 +64,9 @@ def organisation(request, textivist_id, organisation_id):
 
 @login_required
 def mobiles_list(request):
-    mobiles = Mobile.objects.all()
+    accounts = request.user.textivistaccount_set.all()
     context = {
-        'mobiles': mobiles,
+        'accounts': accounts,
     }
     return render(request, 'mobiles/mobiles_list.html', context=context)
 
@@ -120,6 +120,8 @@ def add_topic(request):
             topic = form.save(commit=False)
             topic.owner = request.user
             topic.tt_account = topic.organisation.tt_account
+            topic.start = timezone.now()
+            topic.finish = '2999-01-01 00:00'
             topic.save()
             return redirect('index')
     else:
@@ -135,10 +137,12 @@ def add_topic(request):
 def my_mobile(request):
     memberships = Membership.objects.filter(mobile=request.user)
     subscriptions = Subscription.objects.filter(phone_number=request.user)
+    messages = Outbox.objects.filter(to_mobile=request.user.phone_number, state='SENT')
     context = {
         'mobile': request.user,
         'memberships': memberships,
         'subscriptions': subscriptions,
+        'messages': messages,
     }
     return render(request, "mobiles/my_account.html", context=context)
 

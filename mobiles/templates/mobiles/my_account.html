@@ -9,19 +9,35 @@
 {% block content %}
     <div class="content container">
         <h2>Memberships</h2>
+        <p>Your mobile is associated with the following Accounts and Organisations:</p>
         {% for membership in memberships %}
-            <p><a href="{% url 'tt_account' textivist_id=membership.tt_account.pk %}">{{ membership.tt_account }}</a> -
+            <h4><a href="{% url 'tt_account' textivist_id=membership.tt_account.pk %}">{{ membership.tt_account }}</a></h4>
+                <ul>
                 {% for organisation in membership.organisations.all %}
-                    {{ organisation.name }},
-                {% endfor %}</p>
+                    <li><a href="{% url 'organisation' textivist_id=membership.tt_account.pk organisation_id=organisation.pk %}">{{ organisation.name }}</a></li>
+                {% endfor %}
+                </ul>
         {% endfor %}
     </div>
 
     <div class="content container">
-        <h2>Subscriptions</h2>
+        <h2>Topic Subscriptions</h2>
         {% for subscription in subscriptions %}
-            <p>{{ subscription.topic }} (managed by {{ subscription.topic.organisation }},
-                for {{ subscription.tt_account }} {% if subscription.topic.owner == user %}<i>(you manage this topic</i>{% endif %})</p>
+            {% if subscription.topic.owner == user %}
+                <p><a href="{% url 'topic' topic_id=subscription.topic.pk %}">{{ subscription.topic }}</a> (managed by {{ subscription.topic.organisation }},
+                for {{ subscription.tt_account }}, <i>you own this topic</i>)</p>
+            {% else %}
+                <p>{{ subscription.topic }} (managed by {{ subscription.topic.organisation }},
+                for {{ subscription.tt_account }})</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="content container">
+        <h2>Messages Received</h2>
+        {% for message in messages %}
+            <h6>{{ message.type }} from {{ message.endpoint.organisation }} ({{ message.endpoint.tt_account }}) {{ message.sent }}</h6>
+            <p>{{ message.body }}</p>
         {% endfor %}
     </div>
 

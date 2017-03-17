@@ -1,7 +1,7 @@
 {% extends 'mobiles/base.html' %}
 
 {% block subheader %}
-    <h1>{{ organisation.name }}</h1>
+    <h1>{{ organisation.name }} ({{ organisation.messagingendpoint_set.first.endpoint_address }})</h1>
     <p>Created: {{ organisation.created_date }}</p>
     <p>Owner: {{ organisation.owner }}</p>
 {% endblock %}

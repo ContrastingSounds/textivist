@@ -34,7 +34,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/topics/add/">Add a topic</a></li>
-                                <li><a href="/batch/add/">Schedule a batch message</a></li>
+                                <li><a href="/batch/add/">Schedule a message</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li class="dropdown-header">Admin Links (permission required)</li>
                                 <li><a href="/admin/mobiles/mobile/">List of mobiles</a></li>
@@ -45,7 +45,11 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/help/">Help</a></li>
                         <li><a href="/admin/">Admin</a></li>
-                        <li><a href="{% url 'logout' %}">Log out</a></li>
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url 'logout' %}">Log out {{ user }}</a></li>
+                        {% else %}
+                            <li><a href="{% url 'login' %}">Log in</a></li>
+                        {% endif %}
                     </ul>
                 </div><!-- nav-collapse -->
             </div><!-- container-fluid -->

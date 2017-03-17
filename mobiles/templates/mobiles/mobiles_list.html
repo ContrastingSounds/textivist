@@ -1,14 +1,19 @@
 {% extends 'mobiles/base.html' %}
 
 {% block subheader %}
-    <h1>All registered mobiles</h1>
+    <h1>Registered mobiles</h1>
 {% endblock %}
 
 {% block content %}
-    <ol>
-    {% for mobile in mobiles %}
-        <li>{{ mobile.get_full_name }} Registered: {{ mobile.created_date }}
-            Last Contacted: {{ mobile.last_texted|default_if_none:"Never texted" }}</li>
-    {% endfor %}
-    </ol>
+    {% if user.is_staff %}
+        {% for account in accounts %}
+            <h3>{{ account.name }} (Owner: {{ account.owner }})</h3>
+            <ol>{% for membership in account.membership_set.all %}
+                <li>{{ membership.mobile.get_full_name }} Registered: {{ membership.mobile.created_date }}
+                    Last Contacted: {{ membership.mobile.last_texted|default_if_none:"Never texted" }}</li>
+            {% endfor %}</ol>
+        {% endfor %}
+    {% else %}
+        <p>You do not have permission to see the list of registered mobiles.</p>
+    {% endif %}
 {% endblock %}
